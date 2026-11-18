@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Babe ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg,#ffb6c9,#ffe0eb,#ff9ebd);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  color: #9e2854;
+  padding: 20px 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 430px;
+  background: rgba(255,255,255,.92);
+  padding: 30px 22px;
+  border-radius: 25px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(180,50,100,.2);
+  position: relative;
+  z-index: 2;
+}
+
+.heart {
+  font-size: 65px;
+  animation: beat 1s infinite;
+  margin: 15px;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  border: 2px solid #ff9ebd;
+  border-radius: 20px;
+  outline: none;
+  text-align: center;
+  font-size: 17px;
+}
+
+button {
+  background: #ff4f87;
+  border: none;
+  color: white;
+  padding: 14px 25px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: .3s;
+}
+
+button:hover {
+  transform: scale(1.06);
+  background: #e83270;
+}
+
+.hidden {
+  display: none;
+}
+
+#letter, #surprise {
+  margin-top: 25px;
+  animation: fade 1s;
+}
+
+#message {
+  margin-top: 15px;
+  color: #e83270;
+  font-size: 14px;
+}
+
+.floating {
+  position: fixed;
+  bottom: -30px;
+  animation: floatUp 7s linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.2); }
+}
+
+@keyframes fade {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- PASSWORD SCREEN -->
+  <div id="lockScreen">
+    <div class="heart">🔐💗</div>
+    <h1>Hey Babe! 🥺</h1>
+
+    <p>
+      A little surprise is waiting for you.
+      <br>
+      But first, enter our secret password. ❤️
+    </p>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter secret password 💕"
+      autocomplete="off"
+    >
+
+    <button onclick="unlock()">Unlock My Surprise 💗</button>
+
+    <p id="message"></p>
+  </div>
+
+  <!-- WELCOME SCREEN -->
+  <div id="welcome" class="hidden">
+    <div class="heart">💗</div>
+    <h1>Welcome, My Babe!</h1>
+    <p>
+      You found your little surprise!
+      <br>
+      Someone loves you more than you know. ❤️
+    </p>
+
+    <button onclick="openLetter()">Open Your Love Letter 💌</button>
+  </div>
+
+  <!-- LOVE LETTER -->
+  <div id="letter" class="hidden">
+    <h1>To My Beautiful Babe ❤️</h1>
+
+    <p>
+      I don't need a special occasion to remind you
+      how much you mean to me.
+      <br><br>
+
+      I just wanted to make you smile today.
+      You make my ordinary days feel magical,
+      and your presence makes my world brighter.
+      <br><br>
+
+      I may not always have the perfect words,
+      but I hope you always remember that
+      you are special to me.
+      <br><br>
+
+      Thank you for being you.
+      Thank you for making my life sweeter.
+      <br><br>
+
+      If I could choose again,
+      I would still choose you.
+      Every single time. 💗
+    </p>
+
+    <p style="margin-top:20px;font-style:italic;">
+      Forever yours, ❤️
+    </p>
+
+    <button onclick="showSurprise()">One More Thing... 🎁</button>
+  </div>
+
+  <!-- FINAL SURPRISE -->
+  <div id="surprise" class="hidden">
+    <div class="heart">💝</div>
+    <h1>I LOVE YOU, BABE!</h1>
+
+    <p>
+      No matter how many days pass,
+      I hope I never stop finding new
+      reasons to fall in love with you.
+      <br><br>
+
+      You are my favourite notification,
+      my favourite person,
+      and my favourite part of life. 🥹
+    </p>
+
+    <h2 style="margin-top:20px;">Sending you a million kisses! 😘</h2>
+  </div>
+
+</div>
+
+<script>
+function unlock() {
+  const password = document.getElementById("password").value;
+  const message = document.getElementById("message");
+
+  if (password.toLowerCase() === "dalli") {
+    document.getElementById("lockScreen").classList.add("hidden");
+    document.getElementById("welcome").classList.remove("hidden");
+  } else {
+    message.textContent = "Oops! Wrong password, Babe 🥺 Try again!";
+  }
+}
+
+document.getElementById("password").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") unlock();
+});
+
+function openLetter() {
+  document.getElementById("welcome").classList.add("hidden");
+  document.getElementById("letter").classList.remove("hidden");
+}
+
+function showSurprise() {
+  document.getElementById("letter").classList.add("hidden");
+  document.getElementById("surprise").classList.remove("hidden");
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "floating";
+  heart.innerHTML = ["❤️","💗","💕","💖","💘"][
+    Math.floor(Math.random() * 5)
+  ];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (15 + Math.random() * 25) + "px";
+  heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 9000);
+}
+
+setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
